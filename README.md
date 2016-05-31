@@ -1,15 +1,10 @@
----
-title: "README"
-output: 
-  html_document:
-    keep_md: yes
-    highlight: tango
-author: "Marcus W. Beck, beck.marcus@epa.gov"
----
+# README
+Marcus W. Beck, beck.marcus@epa.gov  
 
 ### Image classification
 
-```{r, message = F,  fig.height = 6, fig.width = 4}
+
+```r
 library(raster)
 library(dplyr)
 library(ggplot2)
@@ -19,7 +14,10 @@ img <- brick("ignore/BOB_0224_P5-2b.JPG")
 plotRGB(img)
 ```
 
-```{r, message = F, fig.height = 8, fig.width = 6}
+![](README_files/figure-html/unnamed-chunk-1-1.png)
+
+
+```r
 # reduce resolution of original for speed
 imgagg <- aggregate(img, fact = 5)
 
@@ -41,8 +39,14 @@ cls_rast <- raster(cls_rast,
   ymx = imgagg@extent@ymax
   )
 plot(cls_rast)
+```
 
+![](README_files/figure-html/unnamed-chunk-2-1.png)
+
+```r
 #barplot of cell counts by class
 barplot(table(cls))
 ```
+
+![](README_files/figure-html/unnamed-chunk-2-2.png)
 
